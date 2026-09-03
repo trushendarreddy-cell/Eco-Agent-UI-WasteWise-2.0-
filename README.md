@@ -13,15 +13,91 @@ feel less like a chore and more like a small game you play every day.
 We had roughly twenty four hours, one laptop, and a public demo at the end.
 That meant we had to choose carefully what was real and what was theatre.
 
-## The shape of the project
+## Who did what
 
-We split the work into three folders so each piece could be built and
-criticised on its own.
+We split the work by what each of us was strongest at. The line was clean and
+we did not cross it during the build.
+
+**My work — the backend** (`backend/`)
+
+- FastAPI service with structured layers: `api`, `core`, `db`, `models`,
+  `schemas`, `services`.
+- Hybrid AI classification pipeline using a pretrained MobileNetV2 from
+  torchvision, a hand curated `waste_mapper.py` lookup that maps ImageNet
+  labels to our four waste categories, and a keyword based fallback that kicks
+  in when the model confidence drops below the threshold.
+- Sustainability scoring: carbon saved, tree equivalent, sustainability
+  score, reward points. All four come back from a single upload call so the
+  front end can render one coherent story.
+- Auth with bcrypt through passlib, signup and login endpoints, role
+  field on accounts.
+- User features backed by SQLAlchemy on Postgres or SQLite: history,
+  stats, weekly CO2 graph, streak counter, leaderboard, rewards catalog,
+  reports.
+- Auto migration shims wrapped in try/except so the same code works on a
+  fresh SQLite database and a populated Postgres instance on Railway.
+- Two stage Dockerfile with a CPU-only PyTorch install, plus a single
+  container Docker Compose setup and a Railway `Procfile`.
+- Setup scripts, `update_db.py`, and the legacy module preserved for
+  reference.
+
+**Shankar's work — the front end** (`cinematic-scroll/`, `3d-rendering-frames/`)
+
+- Next.js 16 + React 19 + TypeScript + Tailwind CSS app.
+- React Three Fiber + three.js scroll-driven image sequence that swaps
+  between 96 frames as the user scrolls, with a custom progressive
+  texture loader that loads critical frames first.
+- GSAP + ScrollTrigger wiring the page scroll position to the frame
+  index and firing a custom `scroll-complete` event for the CTA
+  overlay.
+- Glassmorphic upload UI with drag and drop, validation, error states,
+  and a result card that consumes the backend upload response.
+- Static HTML fallback at `public/index.html` that delivers the same
+  scroll experience without a Node runtime, plus the home, dashboard,
+  AI chat, shop, and greenpoints map pages.
+- Ninety six rendered frames in `3d-rendering-frames/` and the same set
+  mirrored under `cinematic-scroll/public/frames/` for serving, plus
+  the `setup_assets.py` helper that copies raw renders into the served
+  path.
+
+## Tech stack
+
+### Backend
+- Python 3.11
+- FastAPI, Uvicorn, Gunicorn
+- SQLAlchemy 2.0 (ORM), Alembic (migrations), psycopg2 (Postgres) with SQLite fallback
+- Pydantic v2 and pydantic-settings for schemas and config
+- passlib + bcrypt for password hashing
+- PyTorch 2.0.1 (CPU only) and torchvision 0.15.2 with MobileNetV2 weights
+- Pillow for image decoding
+- python-multipart for form uploads
+- python-dotenv for local env loading
+- Docker (multi-stage build) and Docker Compose
+- Railway (`Procfile`, `railway.json`) for deploy
+
+### Front end
+- Next.js 16, React 19, TypeScript 5
+- React Three Fiber, three.js, @react-three/drei
+- GSAP 3 with ScrollTrigger and @gsap/react
+- Tailwind CSS 4, PostCSS
+- Static HTML, CSS, and vanilla JavaScript for the no-runtime fallback pages
+
+### Tooling
+- ESLint with eslint-config-next
+- Git and GitHub for source control
+- After Effects for rendering the 96 frame Earth sequence
+
+## The shape of the project
 
 ```
 backend/                # FastAPI service: AI classification, auth, scoring, stats
 cinematic-scroll/       # Next.js 16 + React Three Fiber front end
 3d-rendering-frames/    # The 96 frame sequence that drives the scroll animation
+Dockerfile              # Single container that builds and runs the API
+docker-compose.yml      # Local stack with persistent uploads and database
+.env.example            # Local configuration template
+.dockerignore           # Excludes dev artefacts from the image
+setup_assets.py         # Copies raw renders into cinematic-scroll/public/frames
 ```
 
 The backend is the brain. The cinematic scroll is the face. The frame
@@ -115,14 +191,17 @@ single coherent story instead of four disconnected stats.
 
 ### 6. Deployment shape
 
-The Dockerfile is a two stage build. The builder stage installs PyTorch
-from the CPU only index URL, then the rest of the requirements. The
-final stage only carries the installed packages forward, which keeps
-the runtime image small and removes the need for gcc in production.
+The root Dockerfile is a single stage image that installs the backend
+requirements, copies the backend code, copies the served `public/`
+folder from the front end, and runs Uvicorn on port 8000. The backend
+mounts the `cinematic-scroll/public` directory as static files at `/`,
+so a single container serves both the API and the entire front end.
+One process. One port. One deployment.
 
-The FastAPI app mounts the `cinematic-scroll/public` directory as static
-files at `/`, so a single container serves both the API and the entire
-front end. One process. One port. One deployment.
+There is also a second, two-stage Dockerfile inside `backend/` that
+splits the heavy ML libraries into their own layer so production images
+stay clean and the CPU-only PyTorch wheel avoids the GPU-enabled
+binaries.
 
 We also kept a pure HTML version of the cinematic scroll in
 `cinematic-scroll/public/index.html` so the experience works even when
@@ -207,6 +286,12 @@ cd cinematic-scroll
 npm install
 npm run dev
 # open http://localhost:3000
+```
+
+```bash
+# single container, both API and static front end
+docker compose up --build
+# open http://localhost:8000
 ```
 
 ## Credits
