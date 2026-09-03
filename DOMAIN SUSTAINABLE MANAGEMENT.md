@@ -182,3 +182,146 @@ to justify the earlier one.
 5. IPCC Climate Reports
    - https://www.ipcc.ch/reports/
    - Intergovernmental Panel on Climate Change
+
+## Additional References
+
+### Government and Policy
+
+6. Ministry of Housing and Urban Affairs (MoHUA), Annual Reports
+   - https://mohua.gov.in/
+   - Source for city-level urban sustainability metrics and Smart Cities
+     Mission outcomes.
+
+7. National Institute of Urban Affairs (NIUA)
+   - https://niua.org/
+   - Research and policy briefs on Indian solid waste management.
+
+8. NITI Aayog, Sustainable Development Goals Index Report
+   - https://niti.gov.in/sdg-india-index/
+   - SDG 11 and 12 indicators relevant to waste and sustainable cities.
+
+9. Plastic Waste Management Rules, 2016 (and 2022 Amendment)
+   - https://moef.gov.in/wp-content/uploads/2017/08/PWM_2016.pdf
+   - https://moef.gov.in/wp-content/uploads/2022/07/Plastic-Waste-Management-Amendment-2022.pdf
+   - Extended Producer Responsibility and single-use plastic phase-out.
+
+10. E-Waste Management Rules, 2022
+    - https://moef.gov.in/wp-content/uploads/2022/07/E-Waste-Management-Rules-2022.pdf
+    - Producer responsibility for electronics and battery waste streams.
+
+11. Construction and Demolition Waste Management Rules, 2016
+    - https://moef.gov.in/wp-content/uploads/2017/08/CDWM_2016.pdf
+    - Material recovery targets and reporting structure.
+
+12. Bio-Medical Waste Management Rules, 2016
+    - https://moef.gov.in/wp-content/uploads/2017/08/BMW_2016.pdf
+    - Categorisation and treatment standards for hazardous clinical waste.
+
+13. Swachh Bharat Mission (Gramin), Official Portal
+    - https://swachhbharatmission.gov.in/sbmcms/index.html
+    - Rural counterparts and behaviour change campaigns.
+
+14. Smart Cities Mission, Official Portal
+    - https://smartcities.gov.in/
+    - Indicator framework that the Municipality Agent can map onto.
+
+15. India State of Forest Report, Forest Survey of India
+    - https://fsi.nic.in/forest-report-2021
+    - Tree carbon sequestration coefficients used for the trees-equivalent
+      metric in the citizen dashboard.
+
+### International Benchmarks
+
+16. World Bank, What a Waste 2.0 Report
+    - https://datatopics.worldbank.org/what-a-waste/
+    - Global solid waste generation, composition, and management data.
+
+17. UN Environment Programme (UNEP), Waste Management Resources
+    - https://www.unep.org/explore-topics/resource-efficiency
+    - Lifecycle and circular economy framing.
+
+18. United Nations Sustainable Development Goals
+    - https://sdgs.un.org/goals
+    - Specifically SDG 11 (Sustainable Cities), SDG 12 (Responsible
+      Consumption and Production), and SDG 13 (Climate Action).
+
+19. OECD, Environment at a Glance Indicators
+    - https://www.oecd.org/environment/environment-at-a-glance/
+    - Comparable per-capita waste and recycling indicators.
+
+20. Ellen MacArthur Foundation, Circular Economy Reports
+    - https://ellenmacarthurfoundation.org/publications
+    - Model for the Recycling Partner Agent.
+
+### Academic Research
+
+21. Hoornweg, D. and Bhada-Tata, P. (2012), "What a Waste: A Global
+    Review of Solid Waste Management", Urban Development Series Knowledge
+    Papers, World Bank.
+    - https://openknowledge.worldbank.org/handle/10986/17388
+
+22. Wilson, D.C., Velis, C. and Cheeseman, C. (2015), "Role of Informal
+    Sector Recycling in Waste Management in Developing Countries", Habitat
+    International, 49, pp. 402-412.
+
+23. Ferronato, N. and Torretta, V. (2019), "Waste Mismanagement in
+    Developing Countries: A Review of Global Issues", International Journal
+    of Environmental Research and Public Health, 16(6), 1060.
+
+24. Kaza, S., Yao, L., Bhada-Tata, P. and Van Woerden, F. (2018), "What a
+    Waste 2.0: A Global Snapshot of Solid Waste Management to 2050", World
+    Bank Group.
+
+25. Marshall, R.E. and Farahbakhsh, K. (2013), "Systems Approaches to
+    Integrated Solid Waste Management in Developing Countries", Waste
+    Management, 33(4), pp. 988-1003.
+
+### Datasets and Open Data
+
+26. World Bank Open Data, Waste Generation Indicators
+    - https://data.worldbank.org/topic/environment
+
+27. UN Stats, Environment Indicators
+    - https://unstats.un.org/unsd/envstats/
+
+28. Our World in Data, Plastic Pollution
+    - https://ourworldindata.org/plastic-pollution
+
+29. OpenStreetMap, for the Collection Optimization Agent routing layer
+    - https://www.openstreetmap.org/
+
+30. Kaggle, Waste Classification Dataset (trashNet style)
+    - https://www.kaggle.com/datasets/techsash/waste-classification-data
+    - Reference dataset shape for the AI Classification Agent.
+
+### Technology and Implementation
+
+31. FastAPI Documentation
+    - https://fastapi.tiangolo.com/
+
+32. Next.js Documentation
+    - https://nextjs.org/docs
+
+33. React Three Fiber Documentation
+    - https://docs.pmnd.rs/react-three-fiber/
+
+34. GSAP ScrollTrigger
+    - https://gsap.com/docs/v3/Plugins/ScrollTrigger/
+
+35. PyTorch and torchvision Documentation
+    - https://pytorch.org/docs/stable/index.html
+    - Source for MobileNetV2 and the underlying image classification model.
+
+36. SQLAlchemy 2.0 Documentation
+    - https://docs.sqlalchemy.org/en/20/
+
+37. PostgreSQL Documentation
+    - https://www.postgresql.org/docs/
+
+38. Docker Documentation
+    - https://docs.docker.com/
+
+40. India Digital Public Infrastructure, Open Network for Digital Commerce
+    (ONDC) and India Stack
+    - https://www.india.gov.in/spotlight/digital-india
+    - Background on identity and consent flows relevant to citizen agents.
