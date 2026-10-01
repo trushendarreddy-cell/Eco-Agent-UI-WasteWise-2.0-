@@ -3,6 +3,9 @@
 A short, honest story of how this project came together in a single day. Built by
 [shankar (@shankar791)](https://github.com/shankar791) and me.
 
+The problem statement and references behind the build are written up in
+[DOMAIN-SUSTAINABLE-MANAGEMENT.md](DOMAIN-SUSTAINABLE-MANAGEMENT.md).
+
 ## What we set out to build
 
 WasteWise is an eco app that turns a mobile photo of your waste into a clear
