@@ -26,8 +26,14 @@ jobs:
 
       - name: Run test suite
         working-directory: backend
+        # PYTHONPATH so `app` resolves; pytest's rootdir insertion does not
+        # cover the package when the tests are invoked from backend/.
+        env:
+          PYTHONPATH: ${{ github.workspace }}/backend
         run: pytest tests -q
 
       - name: Verify the API imports cleanly
         working-directory: backend
+        env:
+          PYTHONPATH: ${{ github.workspace }}/backend
         run: python -c "from app.main import app; print(len(app.routes), 'routes registered')"
