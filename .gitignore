@@ -7,4 +7,5 @@ env/
 *.sqlite
 *.sqlite3
 .env
-uploads/
+.DS_Store
+Thumbs.db
