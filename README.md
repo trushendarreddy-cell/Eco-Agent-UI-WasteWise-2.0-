@@ -304,3 +304,7 @@ Built over twenty four hours by
 frame sequence was rendered by us in After Effects. The classifier
 runs on MobileNetV2 weights from torchvision. Everything else is
 handwritten under deadline pressure.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
